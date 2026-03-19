@@ -1,9 +1,10 @@
 import { toast } from "sonner";
 
-const SHOPIFY_API_VERSION = '2024-01';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'elite-dev-v2.myshopify.com';
+const SHOPIFY_API_VERSION = '2025-07';
+// TODO: swap to elite-dev-v2.myshopify.com + new token once store is on paid plan
+const SHOPIFY_STORE_PERMANENT_DOMAIN = 'elite-elevate-store-r08bn.myshopify.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = 'fbc692e791af849a7b1ec026b9f29621';
+const SHOPIFY_STOREFRONT_TOKEN = '5b997a07edddd6e974a41bd08da43b32';
 
 export interface SellingPlan {
   id: string;
@@ -80,6 +81,7 @@ export async function storefrontApiRequest(query: string, variables: Record<stri
     headers: {
       'Content-Type': 'application/json',
       'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN,
+      'Shopify-Storefront-Private-Token': SHOPIFY_STOREFRONT_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
   });
